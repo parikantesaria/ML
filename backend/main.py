@@ -193,7 +193,7 @@ def predict_default(payload: LoanPredictionRequest):
     else:
         risk_level = "High Risk"
         
-    confidence = round(0.85 + (abs(prob - 0.5) * 0.25), 4)
+    confidence = round(prob if prediction == 1 else (1.0 - prob), 4)
     
     return {
         "prediction": prediction,

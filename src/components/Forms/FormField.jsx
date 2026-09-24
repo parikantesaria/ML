@@ -1,13 +1,14 @@
 import React from 'react'
 import './FormField.css'
 
-export default function FormField({ feature, value, onChange, error }) {
-  const { key, label, inputType, placeholder, min, max, step, options, hint, required } = feature
+export default function FormField({ feature, value, onChange, error, readOnly }) {
+  const { key, label, inputType, placeholder, min, max, step, options, hint, required, isAutoCalculated } = feature
 
   return (
     <div className={`form-field ${error ? 'form-field--error' : ''}`}>
       <label className="form-field__label" htmlFor={key}>
         {label}
+        {isAutoCalculated && <span className="form-field__auto-tag">Auto</span>}
         {required && <span className="form-field__required" aria-hidden="true">*</span>}
       </label>
 
@@ -38,7 +39,8 @@ export default function FormField({ feature, value, onChange, error }) {
           max={max}
           step={step}
           required={required}
-          className="form-field__input"
+          readOnly={readOnly || isAutoCalculated}
+          className={`form-field__input ${isAutoCalculated ? 'form-field__input--readonly' : ''}`}
           aria-describedby={hint ? `${key}-hint` : undefined}
         />
       )}

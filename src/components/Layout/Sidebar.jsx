@@ -6,7 +6,6 @@ const NAV_ITEMS = [
   { id: 'overview',          path: '/',            label: 'Overview',           icon: <GridIcon /> },
   { id: 'loan-predictor',    path: '/predict',     label: 'Loan Predictor',     icon: <BrainIcon /> },
   { id: 'risk-analytics',    path: '/analytics',   label: 'Risk Analytics',     icon: <ChartIcon /> },
-  { id: 'applications',      path: '/applications',label: 'Applications',       icon: <BriefcaseIcon /> },
   { id: 'feature-importance',path: '/features',    label: 'Feature Importance', icon: <DatabaseIcon /> },
   { id: 'model-performance', path: '/performance', label: 'Model Performance',  icon: <CpuIcon /> },
   { id: 'settings',          path: '/settings',    label: 'Settings',           icon: <SettingsIcon /> },
@@ -39,7 +38,7 @@ export default function Sidebar({ collapsed, mobileOpen, onMobileClose }) {
       {/* Navigation */}
       <nav className="sidebar__nav">
         <div className="sidebar__section-label">{!collapsed && 'PLATFORM'}</div>
-        {NAV_ITEMS.slice(0, 6).map(item => (
+        {NAV_ITEMS.slice(0, 5).map(item => (
           <NavItem
             key={item.id}
             item={item}
@@ -53,7 +52,7 @@ export default function Sidebar({ collapsed, mobileOpen, onMobileClose }) {
       {/* Bottom */}
       <div className="sidebar__bottom">
         <div className="sidebar__section-label">{!collapsed && 'ACCOUNT'}</div>
-        {NAV_ITEMS.slice(6).map(item => (
+        {NAV_ITEMS.slice(5).map(item => (
           <NavItem
             key={item.id}
             item={item}

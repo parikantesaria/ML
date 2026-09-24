@@ -132,11 +132,12 @@ export async function predictLoanDefault(payload) {
       (Math.random() * 0.1 - 0.05)
     ))
     const predicted = prob >= 0.5 ? 1 : 0
+    const conf = predicted === 1 ? prob : 1 - prob
     return {
       prediction: predicted,
       probability: parseFloat(prob.toFixed(4)),
       riskLevel: prob < 0.30 ? 'Low Risk' : prob < 0.65 ? 'Medium Risk' : 'High Risk',
-      confidence: parseFloat((0.75 + Math.random() * 0.2).toFixed(4)),
+      confidence: parseFloat(conf.toFixed(4)),
       modelVersion: mockPredictionResult.modelVersion,
       timestamp: new Date().toISOString(),
     }

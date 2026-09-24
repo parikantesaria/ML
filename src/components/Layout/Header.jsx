@@ -6,7 +6,6 @@ const ROUTE_TITLES = {
   '/':            { title: 'Credit Risk Overview',            subtitle: 'Monitor loan applications, borrower risk and model performance' },
   '/predict':     { title: 'Loan Default Predictor',          subtitle: 'Assess borrower risk using our trained ML model' },
   '/analytics':   { title: 'Risk Analytics',                  subtitle: 'Explore patterns in loan default across key variables' },
-  '/applications':{ title: 'Applications Explorer',           subtitle: 'Browse and search historical loan records with all 16 ML model features' },
   '/features':    { title: 'Feature Importance & Explainability', subtitle: 'Relative SHAP impact of features in the credit risk classifier' },
   '/performance': { title: 'Model Performance & Evaluation',   subtitle: 'Evaluate classification metrics for the trained model' },
   '/settings':    { title: 'Settings',                         subtitle: 'Manage API connection endpoints, risk decision thresholds, and model parameters' },

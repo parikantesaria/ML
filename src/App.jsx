@@ -4,7 +4,6 @@ import Layout from './components/Layout/Layout'
 import Overview from './pages/Overview'
 import LoanPredictor from './pages/LoanPredictor'
 import RiskAnalytics from './pages/RiskAnalytics'
-import Applications from './pages/Applications'
 import ModelPerformance from './pages/ModelPerformance'
 import FeatureImportance from './pages/FeatureImportance'
 import Settings from './pages/Settings'
@@ -17,7 +16,6 @@ export default function App() {
           <Route index element={<Overview />} />
           <Route path="predict" element={<LoanPredictor />} />
           <Route path="analytics" element={<RiskAnalytics />} />
-          <Route path="applications" element={<Applications />} />
           <Route path="performance" element={<ModelPerformance />} />
           <Route path="features" element={<FeatureImportance />} />
           <Route path="settings" element={<Settings />} />

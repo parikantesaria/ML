@@ -25,13 +25,48 @@ function validatePayload(values) {
   return errors
 }
 
+function calculateDTI(income, loanAmount, interestRate, loanTerm) {
+  const inc = Number(income)
+  const loan = Number(loanAmount)
+  if (!inc || inc <= 0 || !loan || loan <= 0) return ''
+
+  const monthlyIncome = inc / 12
+  const term = Number(loanTerm) || 36
+  const rate = Number(interestRate) || 0
+
+  let monthlyPayment = 0
+  if (rate > 0 && term > 0) {
+    const r = (rate / 100) / 12
+    monthlyPayment = loan * (r * Math.pow(1 + r, term)) / (Math.pow(1 + r, term) - 1)
+  } else {
+    monthlyPayment = loan / term
+  }
+
+  const dti = monthlyPayment / monthlyIncome
+  return Math.min(1.0, Math.max(0.0, parseFloat(dti.toFixed(2)))).toString()
+}
+
 export default function PredictionForm({ onSubmit, loading }) {
   const [values, setValues] = useState(getEmptyPayload)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
 
   const handleChange = (key, value) => {
-    setValues(prev => ({ ...prev, [key]: value }))
+    setValues(prev => {
+      const nextValues = { ...prev, [key]: value }
+      if (['Income', 'LoanAmount', 'InterestRate', 'LoanTerm'].includes(key)) {
+        const autoDTI = calculateDTI(
+          key === 'Income' ? value : nextValues.Income,
+          key === 'LoanAmount' ? value : nextValues.LoanAmount,
+          key === 'InterestRate' ? value : nextValues.InterestRate,
+          key === 'LoanTerm' ? value : nextValues.LoanTerm
+        )
+        if (autoDTI !== '') {
+          nextValues.DTIRatio = autoDTI
+        }
+      }
+      return nextValues
+    })
     if (touched[key]) {
       // Live re-validate touched field
       const feature = Object.values(FEATURE_SECTIONS).flat().find(f => f.key === key)

@@ -6,6 +6,9 @@ export default function RiskAssessment({ result, onReset }) {
   const { prediction, probability, riskLevel, confidence, modelVersion, timestamp } = result
   const isDefault = prediction === 1
   const pct = Math.round(probability * 100)
+  const displayConfidence = confidence !== undefined
+    ? Math.round(confidence * 100)
+    : Math.round((isDefault ? probability : 1 - probability) * 100)
 
   const getGaugeColor = () => {
     if (probability < 0.30) return 'var(--color-success)'
@@ -104,7 +107,7 @@ export default function RiskAssessment({ result, onReset }) {
           </div>
           <div className="risk-assessment__stat">
             <span className="risk-assessment__stat-label">Model Confidence</span>
-            <span className="risk-assessment__stat-value">{Math.round(confidence * 100)}%</span>
+            <span className="risk-assessment__stat-value">{displayConfidence}%</span>
           </div>
           <div className="risk-assessment__stat">
             <span className="risk-assessment__stat-label">Prediction</span>

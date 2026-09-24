@@ -67,3 +67,23 @@
   color: var(--color-danger);
   font-weight: var(--font-weight-medium);
 }
+
+.form-field__auto-tag {
+  background: rgba(26, 86, 219, 0.1);
+  color: #1A56DB;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+.form-field__input--readonly {
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  cursor: not-allowed;
+  border-style: dashed;
+}
