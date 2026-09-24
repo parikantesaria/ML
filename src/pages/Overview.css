@@ -1,0 +1,119 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.overview__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.overview__row {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.overview__row--2col {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Risk Distribution */
+.overview__risk-dist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-top: var(--space-2);
+}
+
+.overview__risk-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.overview__risk-bar-wrap {
+  height: 8px;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.overview__risk-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease;
+}
+
+.overview__risk-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.overview__risk-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  min-width: 100px;
+}
+
+.overview__risk-value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-left: auto;
+}
+
+.overview__risk-pct {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Table Card */
+.overview__table-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.overview__table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+.overview__table-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.overview__table-subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 1200px) {
+  .overview__metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .overview__row--2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .overview__metrics {
+    grid-template-columns: 1fr;
+  }
+}
